@@ -19,11 +19,16 @@ import { Conversation } from './conversations/entities/conversation.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'root',
-      password: 'root',
-      database: 'db',
+      // host: 'localhost',
+      // port: 5432,
+      // username: 'root',
+      // password: 'root',
+      // database: 'db',
+      url: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false,
+      },
+      // url:"postgres://zxpquifznttjut:202b2e8c55d08c7758f39862cb25964befa6e76936d807745e312db33b6569eb@ec2-54-220-195-236.eu-west-1.compute.amazonaws.com:5432/dftm9i1j16rd66"
       entities: [User, Post, Like, Comment, Following, Message, Conversation],
       synchronize: true,
       logging: false,
