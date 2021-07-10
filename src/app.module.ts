@@ -40,6 +40,8 @@ import { Conversation } from './conversations/entities/conversation.entity';
         dateScalarMode: 'timestamp',
       },
       installSubscriptionHandlers: true,
+      introspection: true,
+      playground: true,
     }),
     UsersModule,
     AuthModule,
