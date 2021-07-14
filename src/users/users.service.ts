@@ -108,6 +108,22 @@ export class UsersService {
     }
   }
 
+  async continueAsGuest() {
+    const user = await this.usersRepository
+      .create({
+        username: 'Guest-' + Math.random(),
+        imageUrl:
+          'https://www.pngitem.com/pimgs/m/279-2799324_transparent-guest-png-become-a-member-svg-icon.png',
+        email: 'guest@gmail.com',
+      })
+      .save();
+
+    const payload = { sub: user.id, email: user.email };
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
+  }
+
   async getUserById(id: string) {
     return await this.usersRepository.findOne({ id }, { relations: ['posts'] });
   }

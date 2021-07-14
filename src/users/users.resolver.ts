@@ -111,4 +111,9 @@ export class UsersResolver {
   WhoToFollow(@GetUser() user: User) {
     return this.usersService.whoToFollow(user.id);
   }
+
+  @Mutation(() => LoginResponse)
+  continueAsGuest() {
+    return this.usersService.continueAsGuest();
+  }
 }
